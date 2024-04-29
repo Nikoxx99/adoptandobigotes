@@ -13,10 +13,10 @@
             Registre sus datos antes de continuar
           </v-card-title>
           <v-card-text>
-            <v-text-field label="Nombre Completo" class="mb-2" variant="outlined" hide-details="uato" />
-            <v-text-field label="Cédula de Ciudadanía" class="mb-2" variant="outlined" hide-details="uato" />
-            <v-text-field label="Direccion" class="mb-2" variant="outlined" hide-details="uato" />
-            <v-text-field label="Barrio" class="mb-2" variant="outlined" hide-details="uato" />
+            <v-text-field label="Nombre Completo" class="mb-2" variant="outlined" hide-details="auto" />
+            <v-text-field label="Cédula de Ciudadanía" class="mb-2" variant="outlined" hide-details="auto" />
+            <v-text-field label="Direccion" class="mb-2" variant="outlined" hide-details="auto" />
+            <v-text-field label="Barrio" class="mb-2" variant="outlined" hide-details="auto" />
             <v-select
               label="Ciudad"
               :items="['San Sebastián de Mariquita']"
@@ -24,9 +24,9 @@
               hide-details="auto"
               class="mb-2"
             />
-            <v-text-field label="Celular con WhatsApp" class="mb-2" variant="outlined" hide-details="uato" />
-            <v-text-field label="Correo Electrónico" class="mb-2" variant="outlined" hide-details="uato" />
-            <v-text-field label="Grupo del Sisben" placeholder="Ejemplo: C10, A1, B12, etc..." variant="outlined" hide-details="uato" />
+            <v-text-field label="Celular con WhatsApp" class="mb-2" variant="outlined" hide-details="auto" />
+            <v-text-field label="Correo Electrónico" class="mb-2" variant="outlined" hide-details="auto" />
+            <v-text-field label="Grupo del Sisben" placeholder="Ejemplo: C10, A1, B12, etc..." variant="outlined" hide-details="auto" />
           </v-card-text>
           <v-card-text>
             <v-btn color="orange-lighten-1" rounded="lg" size="x-large" block>Continuar</v-btn>

@@ -22,8 +22,8 @@
             <h3>Grupo del Sisben: {{ personWithMascots.sisben }}</h3>
           </v-card-text>
           <v-card-text>
-            <v-btn color="orange-lighten-1" class="mr-2" rounded="lg">Editar persona</v-btn>
-            <v-btn color="blue-lighten-1" rounded="lg">Agregar Mascota</v-btn>
+            <v-btn :to="`/person/${personWithMascots.dni}/edit`" color="orange-lighten-1" class="mr-2" rounded="lg">Editar persona</v-btn>
+            <v-btn :to="`/person/${personWithMascots.dni}/create-mascot`" color="blue-lighten-1" rounded="lg">Agregar Mascota</v-btn>
           </v-card-text>
           <v-card-text>
             <v-data-table
@@ -71,60 +71,11 @@
 
 <script setup>
   const route = useRoute()
-  const { $mysql } = useNuxtApp()
-  const [results] = await $mysql.query(`
-    SELECT person.*, 
-      mascots.id AS mascot_id, 
-      mascots.name AS mascot_name, 
-      mascots.race AS mascot_race, 
-      mascots.gender AS mascot_gender, 
-      mascots.type AS mascot_type, 
-      mascots.age AS mascot_age, 
-      mascots.vaccines AS mascot_vaccines, 
-      mascots.no_vaccines_reason AS mascot_no_vaccines_reason, 
-      mascots.sterilized AS mascot_sterilized, 
-      mascots.no_sterilized_reason AS mascot_no_sterilized_reason, 
-      mascots.adopted_status AS mascot_adopted_status
-    FROM person  
-    LEFT JOIN mascots ON person.id = mascots.person_id
-    WHERE person.dni = ${route.params.dni};
-  `);
-
-  let personWithMascots = {
-    mascots: []
-  }; // Objeto para almacenar los datos de la persona y sus mascotas
-
-  results.forEach(result => {
-    // Chequeamos si el objeto ya tiene datos de persona, sino los añadimos
-    if (!personWithMascots.id) {
-      personWithMascots.id = result.id;
-      personWithMascots.name = result.name;
-      personWithMascots.dni = result.dni;
-      personWithMascots.address = result.address;
-      personWithMascots.neighborhood = result.neighborhood;
-      personWithMascots.city = result.city;
-      personWithMascots.phone = result.phone;
-      personWithMascots.sisben_group = result.sisben_group;
-    }
-
-    // Solo añadimos mascota si hay un mascot_id (indicando que realmente existe una mascota asociada)
-    if (result.mascot_id) {
-      const mascot = {
-        id: result.mascot_id,
-        name: result.mascot_name,
-        race: result.mascot_race,
-        gender: result.mascot_gender,
-        type: result.mascot_type,
-        age: result.mascot_age,
-        vaccines: result.mascot_vaccines,
-        no_vaccines_reason: result.mascot_no_vaccines_reason,
-        sterilized: result.mascot_sterilized,
-        no_sterilized_reason: result.mascot_no_sterilized_reason,
-        adopted_status: result.mascot_adopted_status
-      };
-      personWithMascots.mascots.push(mascot);  // Añadir la mascota al array de mascotas
-    }
-  });
+  const { data: res} = await useFetch(`/api/person/${route.params.dni}`, {
+    method: "get"
+  })
+  console.log(res.value)
+  const personWithMascots = res.value.data
   const headers = [
     { title: 'Nombre', value: 'name' },
     { title: 'Raza', value: 'race' },

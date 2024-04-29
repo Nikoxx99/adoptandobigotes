@@ -1,3 +1,3 @@
 <template>
-  create mascot
+  edit person
 </template>
