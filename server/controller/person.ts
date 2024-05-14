@@ -42,16 +42,18 @@ export const create = async (evt: H3Event) => {
       neighborhood: body.neighborhood,
       city: body.city,
       phone: body.phone,
-      sisben_group: body.sisben_group
+      email: body.email,
+      sisben_group: body.sisben_group,
+      created_at: body.created_at
     });
 
     return {
       data: result
     };
-  } catch {
+  } catch (error) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Something went wrong'
+      statusMessage: 'Something went wrong: ' + error
     });
   }
 }

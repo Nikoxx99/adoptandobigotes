@@ -13,13 +13,40 @@
             Bienvenido, {{ personWithMascots.name }}
           </v-card-title>
           <v-card-text>
-            <h3>Cédula de Ciudadanía: {{ personWithMascots.dni }}</h3>
-            <h3>Dirección: {{ personWithMascots.address }}</h3>
-            <h3>Barrio: {{ personWithMascots.neighborhood }}</h3>
-            <h3>Ciudad: {{ personWithMascots.city }}</h3>
-            <h3>Celular con WhatsApp: {{ personWithMascots.phone }}</h3>
-            <h3>Correo Electrónico: {{ personWithMascots.email }}</h3>
-            <h3>Grupo del Sisben: {{ personWithMascots.sisben }}</h3>
+            <v-row>
+              <v-col>
+                <h4 class="text-grey">Cédula de Ciudadanía</h4>
+                <h3>{{ personWithMascots.dni }}</h3>
+              </v-col>
+              <v-col>
+                <h4 class="text-grey">Dirección</h4>
+                <h3>{{ personWithMascots.address }}</h3>
+              </v-col>
+              <v-col>
+                <h4 class="text-grey">Barrio</h4>
+                <h3>{{ personWithMascots.neighborhood }}</h3>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <h4 class="text-grey">Ciudad</h4>
+                <h3>{{ personWithMascots.city }}</h3>
+              </v-col>
+              <v-col>
+                <h4 class="text-grey">Celular con WhatsApp</h4>
+                <h3>{{ personWithMascots.phone }}</h3>
+              </v-col>
+              <v-col>
+                <h4 class="text-grey">Correo Electrónico</h4>
+                <h3>{{ personWithMascots.email }}</h3>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <h4 class="text-grey">Grupo del Sisben</h4>
+                <h3>{{ personWithMascots.sisben_group }}</h3>
+              </v-col>
+            </v-row>
           </v-card-text>
           <v-card-text>
             <v-btn :to="`/person/${personWithMascots.dni}/edit`" color="orange-lighten-1" class="mr-2" rounded="lg">Editar persona</v-btn>
@@ -29,6 +56,7 @@
             <v-data-table
               :headers="headers"
               :items="personWithMascots.mascots"
+              no-data-text="No hay mascotas para esta persona aún"
               item-key="name"
               items-per-page="5"
             >
@@ -74,7 +102,6 @@
   const { data: res} = await useFetch(`/api/person/${route.params.dni}`, {
     method: "get"
   })
-  console.log(res.value)
   const personWithMascots = res.value.data
   const headers = [
     { title: 'Nombre', value: 'name' },

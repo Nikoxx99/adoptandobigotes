@@ -6,6 +6,7 @@ export type MascotModel = {
   race: string;
   gender: number;
   type: number;
+  age: number;
   vaccines: number;
   no_vaccines_reason: string;
   sterilized: number;
@@ -16,7 +17,7 @@ export type MascotModel = {
 
 export const read = async () => {
   const result = await sql({
-    query: 'SELECT * FROM mascot'
+    query: 'SELECT * FROM mascots'
   });
 
   return result as MascotModel[];
@@ -24,21 +25,22 @@ export const read = async () => {
 
 export const detail = async (id: string) => {
   const result = (await sql({
-    query: 'SELECT * FROM mascot WHERE id = ?',
+    query: 'SELECT * FROM mascots WHERE id = ?',
     values: [id]
   })) as MascotModel[];
 
   return result.length === 1 ? result[0] : null;
 }
 
-export const create = async (data: Pick<MascotModel, 'name' | 'race' | 'gender' | 'type' | 'vaccines' | 'no_vaccines_reason' | 'sterilized' | 'no_sterilized_reason' | 'adopted_status' | 'person_id'>) => {
+export const create = async (data: Pick<MascotModel, 'name' | 'race' | 'gender' | 'type' | 'age' | 'vaccines' | 'no_vaccines_reason' | 'sterilized' | 'no_sterilized_reason' | 'adopted_status' | 'person_id'>) => {
   const result = (await sql({
     query: `
-      INSERT INTO mascot (
+      INSERT INTO mascots (
         name,
         race,
         gender,
         type,
+        age,
         vaccines,
         no_vaccines_reason,
         sterilized,
@@ -55,14 +57,16 @@ export const create = async (data: Pick<MascotModel, 'name' | 'race' | 'gender' 
         ?,
         ?,
         ?,
+        ?,
         ?
-      ) RETURNING *
+      )
     `,
     values: [
       data.name,
       data.race,
       data.gender,
       data.type,
+      data.age,
       data.vaccines,
       data.no_vaccines_reason,
       data.sterilized,
@@ -78,7 +82,7 @@ export const create = async (data: Pick<MascotModel, 'name' | 'race' | 'gender' 
 export const update = async (id: number, data: Pick<MascotModel , 'name' | 'race' | 'gender' | 'type' | 'vaccines' | 'no_vaccines_reason' | 'sterilized' | 'no_sterilized_reason' | 'adopted_status' | 'person_id'>) => {
   const result = (await sql({
     query: `
-      UPDATE mascot
+      UPDATE mascots
       SET
         name = ?,
         race = ?,

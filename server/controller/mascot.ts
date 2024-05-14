@@ -40,6 +40,7 @@ export const create = async (evt: H3Event) => {
       race: body.race,
       gender: body.gender,
       type: body.type,
+      age: body.age,
       vaccines: body.vaccines,
       no_vaccines_reason: body.no_vaccines_reason,
       sterilized: body.sterilized,
@@ -51,10 +52,10 @@ export const create = async (evt: H3Event) => {
     return {
       data: result
     };
-  } catch {
+  } catch (error) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Something went wrong'
+      statusMessage: 'Something went wrong: ' + error
     });
   }
 }

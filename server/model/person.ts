@@ -9,6 +9,7 @@ interface PersonModel {
   city: string;
   phone: string;
   sisben_group: string;
+  created_at: string;
   mascots: MascotModel[];
 }
 
@@ -87,7 +88,7 @@ export const detail = async (dni: string): Promise<PersonModel | null> => {
   return personWithMascots;
 };
 
-export const create = async (data: Pick<PersonModel, 'name' | 'dni' | 'address' | 'neighborhood' | 'city' | 'phone' | 'sisben_group'>) => {
+export const create = async (data: Pick<PersonModel, 'name' | 'dni' | 'address' | 'neighborhood' | 'city' | 'phone' | 'email' | 'sisben_group' | 'created_at'>) => {
   const result = (await sql({
     query: `
       INSERT INTO person (
@@ -97,6 +98,7 @@ export const create = async (data: Pick<PersonModel, 'name' | 'dni' | 'address' 
         neighborhood,
         city,
         phone,
+        email,
         sisben_group,
         created_at
       ) VALUES (
@@ -107,8 +109,9 @@ export const create = async (data: Pick<PersonModel, 'name' | 'dni' | 'address' 
         ?,
         ?,
         ?,
+        ?,
         NOW()
-      ) RETURNING *
+      )
     `,
     values: [
       data.name,
@@ -117,11 +120,17 @@ export const create = async (data: Pick<PersonModel, 'name' | 'dni' | 'address' 
       data.neighborhood,
       data.city,
       data.phone,
-      data.sisben_group
+      data.email,
+      data.sisben_group,
+      data.created_at
     ]
   })) as any;
 
-  return result.length === 1 ? (result[0] as PersonModel) : null;
+  const lastInsertDni = (await sql({
+    query: 'SELECT dni FROM person ORDER BY id DESC LIMIT 1',
+  })) as any;
+
+  return lastInsertDni[0].dni;
 };
 
 export const update = async (id: number, data: Pick<PersonModel, 'name' | 'dni' | 'address' | 'neighborhood' | 'city' | 'phone' | 'sisben_group'>) => {
