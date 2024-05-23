@@ -9,16 +9,58 @@
           alt="Logo Colectivo Adoptando Bigotes"
         />
         <v-card class="mx-auto" width="100%" max-width="900">
-          <v-card-title class="text-center">
-            Bienvenido a Adoptando Bigotes
+          <v-card-title>
+            Bienvenido
           </v-card-title>
           <v-alert v-if="error" type="error">{{ error }}</v-alert>
           <v-card-text class="d-flex">
-            <v-text-field v-model="dni" label="Numero de Documento" variant="outlined" hide-details="auto" @focus="error = ''" @keyup.enter="getPerson" />
+            <v-text-field v-model="dni" label="Ingresa tu Documento" variant="outlined" hide-details="auto" @focus="error = ''" @keyup.enter="getPerson" />
           </v-card-text>
           <v-card-text>
-            <v-btn color="orange-lighten-1" rounded="lg" size="x-large" block @click="getPerson">Continuar</v-btn>
+            <v-btn color="orange-lighten-1" rounded="lg" size="x-large" v-if="dni" block @click="getPerson">Consultar</v-btn>
           </v-card-text>
+          <v-img
+            height="300"
+            src="~/public/card.jpg"
+            cover
+          ></v-img>
+          <v-card-item>
+            <v-card-title>Ayuda a nuestro animales</v-card-title>
+
+            <v-card-subtitle>
+              <span class="me-1">San Sebastián de Mariquita</span>
+
+              <v-icon
+                color="error"
+                icon="mdi-fire-circle"
+                size="small"
+              ></v-icon>
+            </v-card-subtitle>
+          </v-card-item>
+
+          <v-card-text>
+            <div class="my-4 text-subtitle-1">
+              Registra tus mascotas y mantengamos el orden en nuestra comunidad.
+            </div>
+
+            <div>Censo de mascotas</div>
+          </v-card-text>
+
+          <v-divider class="mx-4 mb-1"></v-divider>
+
+          <v-card-title>Todos los tipos</v-card-title>
+
+          <div class="px-4 mb-2">
+            <v-chip-group v-model="selection" selected-class="bg-deep-purple-lighten-2">
+              <v-chip>Gatos</v-chip>
+
+              <v-chip>Perros</v-chip>
+
+              <v-chip>Loros</v-chip>
+
+              <v-chip>Y demas...</v-chip>
+            </v-chip-group>
+          </div>
           <v-card-text>
             <p>
               Adoptando Bigotes es una organización sin fines de lucro que se dedica a rescatar, rehabilitar y reubicar gatos en situación de calle.
