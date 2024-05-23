@@ -20,7 +20,7 @@
             <v-btn color="orange-lighten-1" rounded="lg" size="x-large" v-if="dni" block @click="getPerson">Consultar</v-btn>
           </v-card-text>
           <v-img
-            height="300"
+            height="100%"
             src="~/public/card.jpg"
             cover
           ></v-img>
