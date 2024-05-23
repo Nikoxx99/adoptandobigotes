@@ -69,7 +69,9 @@ export const update = async (evt: H3Event) => {
       neighborhood: body.neighborhood,
       city: body.city,
       phone: body.phone,
-      sisben_group: body.sisben_group
+      email: body.email,
+      sisben_group: body.sisben_group,
+      updated_at: body.updated_at
     });
 
     return {

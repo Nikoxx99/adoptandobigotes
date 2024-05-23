@@ -8,8 +8,10 @@ interface PersonModel {
   neighborhood: string;
   city: string;
   phone: string;
+  email: string;
   sisben_group: string;
   created_at: string;
+  updated_at: string;
   mascots: MascotModel[];
 }
 
@@ -133,7 +135,7 @@ export const create = async (data: Pick<PersonModel, 'name' | 'dni' | 'address' 
   return lastInsertDni[0].dni;
 };
 
-export const update = async (id: number, data: Pick<PersonModel, 'name' | 'dni' | 'address' | 'neighborhood' | 'city' | 'phone' | 'sisben_group'>) => {
+export const update = async (id: number, data: Pick<PersonModel, 'name' | 'dni' | 'address' | 'neighborhood' | 'city' | 'phone' | 'email' |'sisben_group' | 'updated_at'>) => {
   const result = (await sql({
     query: `
       UPDATE person
@@ -144,9 +146,10 @@ export const update = async (id: number, data: Pick<PersonModel, 'name' | 'dni' 
         neighborhood = ?,
         city = ?,
         phone = ?,
-        sisben_group = ?
+        email = ?,
+        sisben_group = ?,
+        updated_at = ?
       WHERE id = ?
-      RETURNING *
     `,
     values: [
       data.name,
@@ -155,10 +158,12 @@ export const update = async (id: number, data: Pick<PersonModel, 'name' | 'dni' 
       data.neighborhood,
       data.city,
       data.phone,
+      data.email,
       data.sisben_group,
+      data.updated_at,
       id
     ]
   })) as any;
 
-  return result.length === 1 ? (result[0] as PersonModel) : null;
+  return data.dni;
 };

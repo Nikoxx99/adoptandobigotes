@@ -8,8 +8,9 @@
           src="/logo.png"
           alt="Logo Colectivo Adoptando Bigotes"
         />
-        <v-card class="mx-auto" width="900">
+        <v-card class="mx-auto" width="100%" max-width="900">
           <v-card-title>
+            <v-btn variant="icon" to="/"><v-icon>mdi-arrow-left</v-icon></v-btn>
             Bienvenido, {{ personWithMascots.name }}
           </v-card-title>
           <v-card-text>
@@ -49,8 +50,8 @@
             </v-row>
           </v-card-text>
           <v-card-text>
-            <v-btn :to="`/person/${personWithMascots.dni}/edit`" color="orange-lighten-1" class="mr-2" rounded="lg">Editar persona</v-btn>
-            <v-btn :to="`/person/${personWithMascots.dni}/create-mascot`" color="blue-lighten-1" rounded="lg">Agregar Mascota</v-btn>
+            <v-btn :to="`/person/${personWithMascots.dni}/edit`" prepend-icon="mdi-pencil" variant="tonal" class="mr-2 mb-2" rounded="lg">Editar persona</v-btn>
+            <v-btn :to="`/person/${personWithMascots.dni}/create-mascot`" prepend-icon="mdi-plus" variant="tonal" class="mr-2 mb-2" rounded="lg">Agregar Mascota</v-btn>
           </v-card-text>
           <v-card-text>
             <v-data-table

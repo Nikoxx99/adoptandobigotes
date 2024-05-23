@@ -8,8 +8,9 @@
           src="/logo.png"
           alt="Logo Colectivo Adoptando Bigotes"
         />
-        <v-card class="mx-auto" width="900">
-          <v-card-title class="text-center">
+        <v-card class="mx-auto" width="100%" max-width="900">
+          <v-card-title>
+            <v-btn variant="icon" to="/"><v-icon>mdi-arrow-left</v-icon></v-btn>
             Registre sus datos antes de continuar
           </v-card-title>
           <v-alert v-if="error" type="error">{{ error }}</v-alert>

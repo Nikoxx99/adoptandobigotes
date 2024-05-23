@@ -8,8 +8,9 @@
           src="/logo.png"
           alt="Logo Colectivo Adoptando Bigotes"
         />
-        <v-card class="mx-auto" width="900">
-          <v-card-title class="text-center">
+        <v-card class="mx-auto" width="100%" max-width="900">
+          <v-card-title>
+            <v-btn variant="icon" :to="`/person/${route.params.dni}`"><v-icon>mdi-arrow-left</v-icon></v-btn>
             Registra los datos de tu mascota
           </v-card-title>
           <v-card-text>
