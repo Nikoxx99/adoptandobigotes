@@ -25,7 +25,7 @@
             cover
           ></v-img>
           <v-card-item>
-            <v-card-title>Ayuda a nuestro animales</v-card-title>
+            <v-card-title>Ayuda a nuestros animales</v-card-title>
 
             <v-card-subtitle>
               <span class="me-1">San Sebastián de Mariquita</span>
@@ -56,9 +56,9 @@
 
               <v-chip>Perros</v-chip>
 
-              <v-chip>Loros</v-chip>
+              <v-chip>Aves</v-chip>
 
-              <v-chip>Y demas...</v-chip>
+              <v-chip>Y demas especies...</v-chip>
             </v-chip-group>
           </div>
           <v-card-text>
@@ -66,10 +66,10 @@
               Adoptando Bigotes es una organización sin fines de lucro que se dedica a rescatar, rehabilitar y reubicar gatos en situación de calle.
             </p>
             <p>
-              Nuestro objetivo es encontrar un hogar para cada uno de los gatos que rescatamos, y para ello necesitamos tu ayuda.
+              Nuestro objetivo es encontrar un hogar para cada uno de los gatos y perros que rescatamos, y para ello necesitamos tu ayuda.
             </p>
             <p>
-              Si estás interesado en adoptar un gato, puedes ver los gatos que tenemos disponibles en nuestra página web.
+              Si estás interesado en adoptar, puedes ver quienes estan a la espera en nuestra página web.
             </p>
             <p>
               Si quieres colaborar con nosotros, puedes hacerlo de varias formas:
@@ -88,6 +88,10 @@
             <p>
               Si tienes alguna duda o sugerencia, no dudes en contactarnos.
             </p>
+            <p>María Camila Rodríguez</p> <a href="whatsapp:3105684980">WhatsaApp: 3105684980</a>
+          </v-card-text>
+          <v-card-text class="text-grey">
+            Desarrollado con ❤️ por <a href="https://nicodelatam.com">Ni.CO</a> usando tecnologías modernas de la web
           </v-card-text>
         </v-card>
       </v-col>
